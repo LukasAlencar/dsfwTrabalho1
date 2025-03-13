@@ -19,9 +19,8 @@ class User
         }
     }
 
-    // Verifica se o nome de usuário já existe no banco
     public static function usernameExists($username) {
-        $conn = Database::getConnection(); // Conexão com o banco de dados via PDO
+        $conn = Database::getConnection();
         try {
             $stmt = $conn->prepare("SELECT COUNT(*) FROM users WHERE username = :username");
             $stmt->bindParam(':username', $username, PDO::PARAM_STR);
@@ -29,12 +28,10 @@ class User
             $count = $stmt->fetchColumn();
             return $count > 0;
         } catch (PDOException $e) {
-            // Erro na consulta
             return false;
         }
     }
 
-    // Salva um novo usuário no banco
     public function save() {
         try {
             $stmt = $this->conn->prepare("INSERT INTO users (username, password, role) VALUES (:username, :password, :role)");
@@ -48,7 +45,6 @@ class User
         }
     }
 
-    // Recupera o usuário pelo nome de usuário
     public function getUserByUsername($username)
     {
         try {
@@ -57,12 +53,10 @@ class User
             $stmt->execute();
             return $stmt->fetch(PDO::FETCH_ASSOC);
         } catch (PDOException $e) {
-            // Caso haja erro na consulta
             return null;
         }
     }
 
-    // Incrementa a quantidade de tentativas de login falhadas
     public function incrementFailedAttempts($username)
     {
         try {
@@ -70,11 +64,9 @@ class User
             $stmt->bindParam(':username', $username, PDO::PARAM_STR);
             $stmt->execute();
         } catch (PDOException $e) {
-            // Erro ao incrementar tentativas
         }
     }
 
-    // Reseta as tentativas falhadas de login
     public function resetFailedAttempts($username)
     {
         try {
@@ -82,7 +74,6 @@ class User
             $stmt->bindParam(':username', $username, PDO::PARAM_STR);
             $stmt->execute();
         } catch (PDOException $e) {
-            // Erro ao resetar tentativas
         }
     }
 }
