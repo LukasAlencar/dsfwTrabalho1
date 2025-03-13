@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Entrar</title>
+    <title>Cadastre-se</title>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
@@ -25,14 +25,14 @@
                 </div>
                 <div style="background-color: #99BDF8"
                     class="h-100 w-50 d-flex justify-content-center align-items-center">
-                    <form action="../controllers/LoginController.php" method="POST">
-                        <h3 class="fw-bold mb-3">Entrar</h3>
+                    <form action="../controllers/RegisterController.php" method="POST">
+                        <h3 class="fw-bold mb-3">Cadastre-se</h3>
                         <?php
-                        session_start();
-                        if (isset($_SESSION['error_message'])) {
-                            echo '<div style="color: #f54966" class=" text-start mb-2">' . $_SESSION['error_message'] . '</div>';
-                            unset($_SESSION['error_message']);
-                        }
+                            session_start();
+                            if (isset($_SESSION['error_message'])) {
+                                echo '<div style="color: #f54966" class=" text-start mb-2">' . $_SESSION['error_message'] . '</div>';
+                                unset($_SESSION['error_message']);
+                            }
                         ?>
                         <div data-mdb-input-init class="form-outline mb-4">
                             <input type="text" name="username" id="form3Example3"
@@ -42,13 +42,25 @@
                             <input type="password" name="password" id="form3Example4"
                                 class="form-control form-control-lg fs-6" placeholder="Insira a senha" />
                         </div>
-
+                        <div class="form-check">
+                            <input class="form-check-input" checked value="aluno" type="radio" name="role" id="flexRadioDefault1">
+                            <label class="form-check-label" for="flexRadioDefault1">
+                                Aluno
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" value="professor" type="radio" name="role" id="flexRadioDefault2"
+                                >
+                            <label class="form-check-label" for="flexRadioDefault2">
+                                Professor
+                            </label>
+                        </div>
                         <div class="text-center text-lg-start mt-2 pt-2 w-100">
                             <button type="submit" data-mdb-button-init data-mdb-ripple-init
                                 class="btn btn-danger btn-md w-100"
-                                style="padding-left: 1.5rem; padding-right: 1.5rem;">Entrar</button>
-                                <p class="small fw-bold mt-2 pt-1 mb-0">Não tem uma conta? <a href="register.php"
-                                    class="link-danger">Cadastre-se</a></p>
+                                style="padding-left: 1.5rem; padding-right: 1.5rem;">Cadastrar</button>
+                            <p class="small fw-bold mt-2 pt-1 mb-0">Já tem uma conta? <a href="login.php"
+                                    class="link-danger">Entrar</a></p>
                         </div>
                     </form>
                 </div>

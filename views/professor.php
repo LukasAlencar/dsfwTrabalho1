@@ -6,7 +6,7 @@ if (!isset($_SESSION['user_id'])) {
     exit();
 } else if ($_SESSION['user_id']['role'] !== 'professor') {
     $_SESSION['error_message'] = "Você não tem acesso a essa página.";
-    header("Location: " . $routes['aluno']);
+    header("Location: " . 'aluno.php');
     exit();
 }
 ?>
@@ -17,7 +17,7 @@ if (!isset($_SESSION['user_id'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Página do Professor</title>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
@@ -34,7 +34,12 @@ if (!isset($_SESSION['user_id'])) {
         <div class="modal-dialog w-50">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Professor</h5>
+                    <h5 class="modal-title">
+                        Professor: 
+                        <?php
+                            echo $_SESSION['user_id']['username'];
+                        ?>
+                    </h5>
                 </div>
                 <div class="modal-body">
                     <p>Bem vindo!</p>

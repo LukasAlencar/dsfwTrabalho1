@@ -10,7 +10,8 @@ $routes = [
     'login' => 'controllers/LoginController.php',
     'professor' => 'views/professor.php',
     'aluno' => 'views/aluno.php',
-    'logout' => 'controllers/LogoutController.php'
+    'logout' => 'controllers/LogoutController.php',
+    'register' => 'controllers/RegisterController.php'
 ];
 
 if (array_key_exists($route, $routes)) {
