@@ -1,0 +1,16 @@
+# Habilita o uso de URLs amigáveis
+RewriteEngine On
+
+# Redireciona todas as requisições para index.php, exceto arquivos e diretórios existentes
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php?route=$1 [L,QSA]
+
+# Protege arquivos sensíveis
+<FilesMatch "(database.php|SessionManager.php|User.php|LoginController.php)">
+    Order Allow,Deny
+    Deny from all
+</FilesMatch>
+
+# Impede a listagem de diretórios
+Options -Indexes
